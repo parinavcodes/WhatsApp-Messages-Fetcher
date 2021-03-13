@@ -126,12 +126,16 @@ class MessageListener(AbstractEventListener,MessageFetcher):
     def before_find(self,by, element, driver):
         i=0
         if self.group_name == element.split("=")[1].split("]")[0]:
+            # print(element)
             try:
                 element=driver.find_element_by_xpath(element).find_element_by_xpath("./../../..")
-                element=element.find_element_by_xpath('//div[@class="_1SjZ2"]/div[@class="_15smv"]/span/div[@class="_2TiQe"]')
+                # print(element.text)
+                element=element.find_element_by_xpath('./div[@class="_1SjZ2"]/div[@class="_15smv"]/span/div[@class="_2TiQe"]')
+                # print(element.text)
                 group_select = driver.find_element_by_xpath("//span[@title=" + self.group_name + "]")
                 super().whatsapp_data_fetcher(driver, group_select)
             except:
+                # print("in")
                 pass
 
 if __name__=="__main__":
